@@ -9,7 +9,7 @@ db.createUser({
   pwd: "123123",
   roles: ["dbAdmin"],
 })
-/* 
+
 db.createUser({
   user: "testRead",
   pwd: "123123",
@@ -21,7 +21,8 @@ db.createUser({
   pwd: "123123",
   roles: ["readWrite"],
 })
-
+/* 
+// 在admin数据库创建test数据库的用户
 db = mongo.getDB("admin")
 
 db.createUser({
