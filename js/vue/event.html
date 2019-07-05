@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>event</title>
+</head>
+
+<body>
+  <div id="app">
+    <x-input v-model="username" :label.sync='label' v-on:focus="onFocus" placeholder="Enter your username"></x-input>
+  </div>
+  <script src="./vue.js"></script>
+  <script type="text/x-template" id="x-input">
+    <label>
+      {{ label }}
+      <input
+        v-bind="$attrs"
+        v-bind:value="value"
+        v-on="inputListeners"
+        
+      >
+    </label>
+  </script>
+  <script>
+    Vue.component('x-input', {
+      template: '#x-input',
+      inheritAttrs: false,
+      data() {
+        return {
+        }
+      },
+      props: ['label', 'value'],
+      created() {
+        this.$emit('update:label', 444)
+      },
+      computed: {
+        inputListeners: function () {
+          var vm = this
+          // `Object.assign` 将所有的对象合并为一个新对象
+          return Object.assign({},
+            this.$listeners,
+            {
+              input: function (event) {
+                vm.$emit('input', event.target.value)
+              }
+            }
+          )
+        }
+      }
+    })
+    let app = new Vue({
+      el: '#app',
+      data: {
+        username: 'xu yue chao',
+        label: 123
+      },
+      watch: {
+        username: function() {
+          console.log('username');
+        }
+      },
+      methods: {
+        onFocus() {
+          console.log('onFocus');
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

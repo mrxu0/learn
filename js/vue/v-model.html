@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>event</title>
+</head>
+
+<body>
+  <div id="app">
+    <x-input ref="xInput" v-model="title" label="我是描述" type="text" data-a="123" placeholder="干得漂亮"></x-input>
+    <!-- 以下写法等同于上面的写法 -->
+    <!-- <x-input :value="title" v-on:input="title=$event" label="我是描述" type="text" data-a="123" placeholder="干得漂亮"></x-input> -->
+    <h2>{{title}}</h2>
+  </div>
+  <script src="./vue.js"></script>
+  <script type="text/x-template" id="x-input">
+    <label for="">{{label}}
+        <input :value='value' v-on:input="$emit('input', $event.target.value)" v-bind="$attrs"/>
+    </label>
+  </script>
+  <script>
+    Vue.component('x-input', {
+      template: '#x-input',
+      inheritAttrs: false,
+      model: {
+        prop: 'value',
+        event: 'input'
+      },
+      props: {
+        value: String,
+        label: String
+      },
+      data() {
+        return {
+          b: 123
+        }
+      },
+      methods: {
+        a() {
+          console.log('aaa')
+        }
+      }
+    })
+    let app = new Vue({
+      el: '#app',
+      data: {
+        title: 'xu yue chao',
+      },
+      mounted() {
+        console.log(this.$refs.xInput.b)
+      }
+    })
+  </script>
+</body>
+
+</html>

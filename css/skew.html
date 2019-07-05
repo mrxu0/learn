@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .button {
+      position: relative;
+      height: 40px;
+      width: 120px;
+      line-height: 40px;
+      text-align: center;
+      margin: 20px auto;
+    }
+
+    .button::before {
+      content: '';
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      position: absolute;
+      background: green;
+      transform: skew(45deg)
+    }
+  </style>
+</head>
+
+<body>
+  <div class="button">6 的飞起</div>
+</body>
+
+</html>
